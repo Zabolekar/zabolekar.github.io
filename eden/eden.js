@@ -129,4 +129,4 @@ d3.timer(time => {
             .attr("transform", "translate(" + position + ",0)");
 });
 
-var lineFunction = d3.svg.line().x(d => d.x).y(d => d.y).interpolate("basis");
+var lineFunction = d3.line().x(d => d.x).y(d => d.y).curve(d3.curveBasis)
