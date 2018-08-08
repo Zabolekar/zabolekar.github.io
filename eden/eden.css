@@ -8,21 +8,21 @@ path {
   stroke-linecap: round;
 }
 
-.cage {
+.largeribs {
   fill: #eed;
   stroke: #ffe;
   stroke-width: 3px;
   stroke-linecap: round;
 }
 
-.plate {
+.legs, .plate {
   fill: #fff;
   stroke: #aa7;
   stroke-width: 2px;
   stroke-linecap: round;
 }
 
-.bird {
+.spine, .hands, .head {
   fill: #fff;
   stroke: #444;
   stroke-width: 2px;
@@ -35,7 +35,7 @@ path {
   stroke-width: 2px;
 }
 
-p {
+#words {
    color: #fff;
    margin: auto;
    width: 30%;

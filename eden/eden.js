@@ -1,5 +1,6 @@
-var width = 1350, height = 500;
-var n = 50; //je kleiner desto schneller, je mehr desto interessanter
+var width = 1350,
+    height = 500,
+    n = 50; // smaller n is faster, larger n is more interesting
 
 var exponates = d3.range(1,n+1).map(function(i) {
   with (Math) {
@@ -38,15 +39,12 @@ var exponates = d3.range(1,n+1).map(function(i) {
    }
 });
 
-var svg = d3.select("body").append("svg").attr("width", width).attr("height", height).on("mousedown", mouseDown).on("mouseup", mouseUp);
+var svg = d3.select("body #gallery").append("svg").attr("width", width).attr("height", height).on("mousedown", mouseDown).on("mouseup", mouseUp);
 var g = svg.selectAll("g").data(exponates).enter().append("g");
-g.append("path").datum(function(d) { return d.largeribs; }).attr("class", "cage");
-g.append("path").datum(function(d) { return d.legs; }).attr("class", "plate");
-g.append("path").datum(function(d) { return d.plate; }).attr("class", "plate");
-g.append("path").datum(function(d) { return d.spine; }).attr("class", "bird");
-g.append("path").datum(function(d) { return d.hands; }).attr("class", "bird");
-g.append("path").datum(function(d) { return d.head; }).attr("class", "bird");
-g.append("path").datum(function(d) { return d.eyes; }).attr("class", "eyes");
+
+["largeribs", "legs", "plate", "spine", "hands", "head", "eyes"].forEach(function (s) {
+   g.append("path").datum(function(d) { return d[s]; }).attr("class", s);
+})
 
 //Moving slowly to the left
 var v_x = -1,
