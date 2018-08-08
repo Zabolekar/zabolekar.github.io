@@ -1,0 +1,42 @@
+body {
+  background: #000;
+}
+
+path {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+}
+
+.cage {
+  fill: #eed;
+  stroke: #ffe;
+  stroke-width: 3px;
+  stroke-linecap: round;
+}
+
+.plate {
+  fill: #fff;
+  stroke: #aa7;
+  stroke-width: 2px;
+  stroke-linecap: round;
+}
+
+.bird {
+  fill: #fff;
+  stroke: #444;
+  stroke-width: 2px;
+  stroke-linecap: round;
+}
+
+.eyes {
+  fill: #000;
+  stroke: #333;
+  stroke-width: 2px;
+}
+
+p {
+   color: #fff;
+   margin: auto;
+   width: 30%;
+}
