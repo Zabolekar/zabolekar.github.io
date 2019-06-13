@@ -4,11 +4,23 @@
   <meta charset="utf-8">
   <title>Курзив</title>
   <link rel="stylesheet" href="index.css">
+  <script>
+  function showOrHide() {
+    var checkBox = document.getElementById("showOrHide");
+    var accented = document.getElementById("accented");
+    var unaccented = document.getElementById("unaccented");
+    accented.style.display = checkBox.checked ? "block" : "none";
+    unaccented.style.display = checkBox.checked ? "none" : "block";
+  }
+  </script>
 </head>
 <body>
-ку̏ћа ми је о̀творена, мо̀ја ва̏тра у̀га̄шена
-за̀то̄, а̏ко жѐлӣш, бо̏же ки̏ше̄, са̏мо на̏пре̄д, поша̀љи пљу̑сак
-<!--кућа ми је отворена, моја ватра угашена<br>
-зато, ако желиш, боже кише, само напред, пошаљи пљусак-->
+<p id="accented" style="display:none">
+ку̏ћа ми је о̀творена, мо̀ја ва̏тра у̀га̄шена<br>
+за̀то̄, а̏ко жѐлӣш, бо̏же ки̏ше̄, са̏мо на̏пре̄д, поша̀љи пљу̑сак</p>
+<p id="unaccented" style="display:block">
+кућа ми је отворена, моја ватра угашена<br>
+зато, ако желиш, боже кише, само напред, пошаљи пљусак</p>
+<input type="checkbox" id="showOrHide" onclick="showOrHide()">
 </body>
 </html>
