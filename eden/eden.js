@@ -1,4 +1,4 @@
-const width = 1350,
+const width = window.innerWidth,
       height = 500,
       n = 50; // smaller n is faster, larger n is more interesting
 
@@ -51,14 +51,14 @@ var exponates = d3.range(1, n+1).map(i => {
           y0 = height * (0.5 + (random()*0.2-0.1)),
           r1 = 20,
           r2 = 80,
+          bird_factor = random(),
           leftRibs = d3.range(PI/2, 3*PI/2, PI/80)
                        .map(phi => random() > 0.5+(i-1)/(2*n) ? 0 : phi)
                        .map(phi => 
                            ({x: max(min(phi == 0 ? 0 : ((i-1)/(2*n)+1)*r2*cos(phi),
                                         random() > 0.5 ? 80 : 60),
                                     random() > 0.5 ? -80 : -60),
-                             y: phi == 0 ? 0 : 1.5*r2*sin(phi)+random()})
-                        ),
+                             y: phi == 0 ? 0 : 1.5*r2*sin(phi)+random()})),
           plate = d3.range(0, 2*PI, PI/36).map(phi =>
              ({x: max(min(r1*cos(phi)*(sin(phi)+4*(i-1)/n),
                           50),
@@ -73,10 +73,13 @@ var exponates = d3.range(1, n+1).map(i => {
              ({x: 5*sin(5*j)+random(),
                y: j+random()})
           ),
-          head = d3.range(PI/2, 3*PI/2, PI/20).map(phi =>
-             ({x: -15*cos(phi)*(1-(i-1)/(n-1)+(i-1)/(n-1)*(sin(phi)+3)),
-               y: 15*sin(phi)-20})
-          ),
+          head = d3.range(PI/2, 3*PI/2, PI/20)
+                   .map(phi =>
+                      ({x: -15*cos(phi)*(1-(i-1)/(n-1)+(i-1)/(n-1)*(sin(phi)+3)),
+                        y: 15*sin(phi)-20}))
+                   .map(o => {
+                     return {x: o.x, y: o.y - bird_factor * o.x}
+                   }),
           eye = eye_raw.map(randomize),
           hand = hand_raw.map(randomize);
 
@@ -122,11 +125,12 @@ var g = svg.selectAll("g")
 var v_x = -1,
     position = 0, 
     everything = g.selectAll("path");
+    ribs = g.selectAll(".ribs")
 
 d3.timer(time => {
-  position += v_x;
-  everything.attr("d", lineFunction)
-            .attr("transform", "translate(" + position + ",0)");
+   position += v_x;
+   everything.attr("d", lineFunction)
+             .attr("transform", "translate(" + position + ",0)");
 });
 
 var lineFunction = d3.line().x(d => d.x).y(d => d.y).curve(d3.curveBasis)
